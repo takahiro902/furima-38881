@@ -22,11 +22,11 @@
 |-------------|------------|--------------------------------|
 | name        | string     | null: false                    |
 | description | text       | null: false                    |
-| category    | integer    | null: false                    |
-| status      | integer    | null: false                    |
-| cost        | integer    | null: false                    |
-| area        | integer    | null: false                    |
-| shipment    | integer    | null: false                    |
+| category_id | integer    | null: false                    |
+| status_id   | integer    | null: false                    |
+| cost_id     | integer    | null: false                    |
+| area_id     | integer    | null: false                    |
+| shipment_id | integer    | null: false                    |
 | price       | integer    | null: false                    |
 | user        | references | null: false, foreign_key: true |
 
@@ -53,7 +53,7 @@
 |Column         |Type        |Options                         |
 |---------------|------------|--------------------------------|
 | post_code     | string     | null: false                    |
-| area          | integer    | null: false                    |
+| area_id       | integer    | null: false                    |
 | city          | string     | null: false                    |
 | block         | string     | null: false                    |
 | building_name | string     |                                |
