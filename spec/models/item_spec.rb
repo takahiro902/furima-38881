@@ -22,37 +22,37 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Name can't be blank")
       end
-      it "商品の説明が空欄だと登録ができない" do
+      it "商品の説明が空欄だと出品できない" do
         @item.description = ""
         @item.valid?
         expect(@item.errors.full_messages).to include("Description can't be blank")
       end
-      it "カテゴリーが未選択だと登録できない" do
+      it "カテゴリーが未選択だと出品できない" do
         @item.category_id = "1"
         @item.valid?
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
-      it "商品の状態が未選択だと登録できない" do
+      it "商品の状態が未選択だと出品できない" do
         @item.status_id = "1"
         @item.valid?
         expect(@item.errors.full_messages).to include("Status can't be blank")
       end
-      it "配送料の負担が未選択だと登録できない" do
+      it "配送料の負担が未選択だと出品できない" do
         @item.cost_id = "1"
         @item.valid?
         expect(@item.errors.full_messages).to include("Cost can't be blank")
       end
-      it "発送元の地域が未選択だと登録できない" do
+      it "発送元の地域が未選択だと出品できない" do
         @item.area_id = "1"
         @item.valid?
         expect(@item.errors.full_messages).to include("Area can't be blank")
       end
-      it "発送までの日数が未選択だと登録できない" do
+      it "発送までの日数が未選択だと出品できない" do
         @item.shipment_id = "1"
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipment can't be blank")
       end
-      it "販売価格が未入力だと登録できない" do
+      it "販売価格が未入力だと出品できない" do
         @item.price = ""
         @item.valid?
         expect(@item.errors.full_messages).to include("Price can't be blank")
@@ -67,17 +67,17 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
       end
-      it "販売価格は全角数字では登録できない" do
+      it "販売価格は全角数字では出品できない" do
         @item.price = "３００"
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is not a number")
       end
-      it "販売価格は半角英字では登録できない" do
+      it "販売価格は半角英字では出品できない" do
         @item.price = "Three_hundred"
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is not a number")
       end
-      it "販売価格は漢数字では登録できない" do
+      it "販売価格は漢数字では出品できない" do
         @item.price = "三百円"
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is not a number")
