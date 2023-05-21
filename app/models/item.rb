@@ -17,7 +17,7 @@ class Item < ApplicationRecord
   validates :cost_id,     numericality: { other_than: 1 , message: "can't be blank"}
   validates :area_id,     numericality: { other_than: 1 , message: "can't be blank"}
   validates :shipment_id, numericality: { other_than: 1 , message: "can't be blank"}
-  validates :price,       presence: true
+  validates :price, presence: true, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
   validates :user,        presence: true
 
 end
