@@ -12,20 +12,21 @@ class Item < ApplicationRecord
 
   validates :name,        presence: true
   validates :description, presence: true
-  validates :category_id, numericality: { other_than: 1 , message: "can't be blank"}
-  validates :status_id,   numericality: { other_than: 1 , message: "can't be blank"}
-  validates :cost_id,     numericality: { other_than: 1 , message: "can't be blank"}
-  validates :area_id,     numericality: { other_than: 1 , message: "can't be blank"}
-  validates :shipment_id, numericality: { other_than: 1 , message: "can't be blank"}
-  validates :price, presence: true, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }, format: { with:/\A\d+\z/}
-  validates :user,        presence: true
+  validates :category_id, numericality: { other_than: 1, message: "can't be blank" }
+  validates :status_id,   numericality: { other_than: 1, message: "can't be blank" }
+  validates :cost_id,     numericality: { other_than: 1, message: "can't be blank" }
+  validates :area_id,     numericality: { other_than: 1, message: "can't be blank" }
+  validates :shipment_id, numericality: { other_than: 1, message: "can't be blank" }
+  validates :price, presence: true, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 },
+                    format: { with: /\A\d+\z/ }
+  validates :user, presence: true
   validate  :validate_image_presence
 
   private
 
   def validate_image_presence
-    if !image.attached?
-      errors.add(:image,"must be attached")
-    end
+    return if image.attached?
+
+    errors.add(:image, 'must be attached')
   end
 end
