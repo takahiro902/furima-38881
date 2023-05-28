@@ -35,6 +35,12 @@ class ItemsController < ApplicationController
     end
   end
 
+  def destroy
+    check_user
+    @item.destroy
+    redirect_to root_path
+  end
+
   private
 
   def item_params
@@ -48,5 +54,10 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
+  end
+
+  def check_user
+    @item = Item.find(params[:id])
+    redirect_to root_path unless @item.user == current_user
   end
 end
