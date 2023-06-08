@@ -49,15 +49,30 @@ RSpec.describe OrderAddress, type: :model do
       @order_address.valid?
       expect(@order_address.errors.full_messages).to include("Phone number can't be blank")
     end
-    it '電話番号は、10桁以上11桁以内の半角数値のみ購入可能なこと' do
-      @order_address.phone_number = '090-1234-5678'
+    it '電話番号は、9桁以下では購入できない' do
+      @order_address.phone_number = '090123456'
       @order_address.valid?
       expect(@order_address.errors.full_messages).to include('Phone number is invalid. Please enter numbers only')
     end
-    it 'ユーザー情報がない場合は購入できない' do
+    it '電話番号は、12桁以上では購入できない' do
+      @order_address.phone_number = '090123456789'
+      @order_address.valid?
+      expect(@order_address.errors.full_messages).to include('Phone number is invalid. Please enter numbers only')
+    end
+    it '電話番号に半角数字以外が含まれている場合は購入できない' do
+      @order_address.phone_number = '090-12345678'
+      @order_address.valid?
+      expect(@order_address.errors.full_messages).to include('Phone number is invalid. Please enter numbers only')
+    end
+    it 'ユーザー情報紐づいていない場合は購入できない' do
       @order_address.user_id = nil
       @order_address.valid?
       expect(@order_address.errors.full_messages).to include("User can't be blank")
+    end
+    it 'itemが紐づいていない場合は購入できない' do
+      @order_address.item_id = nil
+      @order_address.valid?
+      expect(@order_address.errors.full_messages).to include("Item can't be blank")
     end
     it 'tokenが空では登録できない' do
       @order_address.token = nil
